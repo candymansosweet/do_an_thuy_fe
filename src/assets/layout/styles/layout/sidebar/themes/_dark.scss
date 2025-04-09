@@ -1,0 +1,13 @@
+.layout-sidebar-dark {
+    --d-sidebar-bg-color:#1e1e1e;
+    --d-sidebar-bg-color-alt:#1e1e1e;
+    --d-sidebar-border:1px solid #383838;
+    --d-app-name-color:var(--text-color);
+    --d-menu-separator-border: 1px solid #383838;
+    --d-menuitem-root-text-color: var(--text-color-secondary);
+    --d-menuitem-text-color: var(--text-color);
+    --d-menuitem-hover-bg: rgba(255,255,255,.03);
+    --d-menuitem-active-bg: #2b2b2b;
+    --d-menuitem-text-active-color: #ffffff;
+    --d-menuitem-focus-shadow: 0 0 0 1px #BBDEFB;
+}

@@ -1,0 +1,55 @@
+.bg-shape-top {
+    min-height: 520px;
+    background-size: cover;
+    background-position: 0% bottom;
+    background-repeat: no-repeat;
+    overflow: visible;
+    // background-image: url('../../../assets/demo/images/landing/bg-header.svg')
+}
+
+.bg-shape-bottom {
+    min-height: 770px;
+    background-size: cover;
+    background-position: 0 top;
+    // background-image: url('../../../assets/demo/images/landing/bg-contact.svg')
+}
+
+.moveinright {
+    animation: moveinright .15s linear;
+}
+
+.moveinleft {
+    animation: moveinleft .15s linear;
+}
+
+@media screen and (max-width: 992px) {
+    #menu {
+        background-color: var(--surface-overlay) !important;
+    }
+}
+
+@keyframes moveinright {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: transform .12s cubic-bezier(0, 0, 0.2, 1), opacity .12s cubic-bezier(0, 0, 0.2, 1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+@keyframes moveinleft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: transform .12s cubic-bezier(0, 0, 0.2, 1), opacity .12s cubic-bezier(0, 0, 0.2, 1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}

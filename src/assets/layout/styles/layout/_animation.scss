@@ -1,0 +1,13 @@
+@keyframes modal-in {
+	from {
+		background-color: transparent;
+	}
+
+	to {
+		background-color: var(--maskbg);
+	}
+}
+
+.modal-in {
+	animation-name: modal-in;
+}

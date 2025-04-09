@@ -1,0 +1,159 @@
+.layout-topbar {
+    background: var(--surface-overlay);
+    min-height: 4rem;
+    padding: 0 2rem;
+    border-bottom: 1px solid var(--surface-border);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    color: var(--text-color);
+    transition: transform .4s cubic-bezier(.05,.74,.2,.99);
+
+    .topbar-left {
+        display: flex;
+        align-items: center;
+
+        .horizontal-logo {
+            display: none;
+        }
+    }
+
+    .menu-button {
+        width: 2.5rem;
+        height: 2.5rem;
+        line-height: 2.5rem;
+        text-align: center;
+        color: var(--text-color);
+        overflow: hidden;
+        border-radius: var(--border-radius);
+        background: var(--surface-ground);
+        transition: background-color var(--transition-duration), box-shadow var(--transition-duration);
+        display: block;
+        cursor: pointer;
+        outline: 0 none;
+
+        &:hover {
+            background: var(--surface-hover);
+        }
+
+        &:focus {
+            box-shadow: var(--focus-ring);
+        }
+
+        i {
+            line-height: inherit;
+            font-size: 1.5rem;
+        }
+    }
+
+    .topbar-separator {
+        display: block;
+        width: 1px;
+        border-left: 1px solid var(--surface-border);
+        align-self: stretch;
+        margin: 0 1rem;
+    }
+
+    .mobile-logo {
+        display: none;
+    }
+
+    .viewname {
+        font-weight: 600;
+        font-size: 1.25rem;
+    }
+
+    .topbar-menu {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+
+        > li {
+            margin-left: 1rem;
+            position: relative;
+
+            &:first {
+                margin-left: 0;
+            }
+
+            &.profile-item {
+                padding: 0 1rem 0 1rem;
+                border-left: 1px solid var(--surface-border);
+                border-right: 1px solid var(--surface-border);
+
+                > a {
+                    width: auto;
+                    height: auto;
+                    display: flex;
+                    align-items: center;
+                    font-size: .875rem;
+                    font-weight: 600;
+                    padding: 0 .5rem 0 0;
+                }
+
+                .profile-image {
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    margin-right: .5rem;
+                }
+            }
+
+            &.right-sidebar-item {
+                > a {
+                    background: var(--surface-ground);
+                }
+            }
+
+            > a {
+                width: 2.5rem;
+                height: 2.5rem;
+                line-height: 2.5rem;
+                text-align: center;
+                color: var(--text-color);
+                overflow: hidden;
+                border-radius: var(--border-radius);
+                transition: background-color var(--transition-duration), box-shadow var(--transition-duration);
+                display: block;
+                position: relative;
+                cursor: pointer;
+                user-select: none;
+                outline: 0 none;
+
+                &:hover {
+                    background: var(--surface-hover);
+                }
+
+                &:focus {
+                    box-shadow: var(--focus-ring);;
+                }
+
+                i {
+                    line-height: inherit;
+                    font-size: 1.5rem;
+                }
+
+                .topbar-badge {
+                    position: absolute;
+                    display: block;
+                    right: 0;
+                    top: 0;
+                    width: 1rem;
+                    height: 1rem;
+                    line-height: 1rem;
+                    font-size: .714rem;
+                    border-radius: 50%;
+                    font-weight: 600;
+                    background: var(--primary-color);
+                    color: var(--primary-color-text);
+                }
+            }
+        }
+    }
+}

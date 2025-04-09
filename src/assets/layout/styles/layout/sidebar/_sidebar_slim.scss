@@ -1,0 +1,109 @@
+@media screen and (min-width: $breakpoint) {
+    .layout-wrapper {
+        &.layout-slim {
+            .layout-topbar {
+                width: calc(100% - 6rem);
+                margin-left: 7rem;
+
+                .topbar-left {
+                    .horizontal-logo {
+                        display: none;
+                    }
+
+                    .menu-button {
+                        display: none;
+                    }
+
+                    .topbar-separator {
+                        display: none;
+                    }
+                }
+            }
+
+            .layout-sidebar {
+                width: 7rem;
+                overflow: visible;
+                z-index: 999;
+
+                .logo-image {
+                    margin-right: 0;
+                }
+
+                .app-name {
+                    display: none;
+                }
+                .layout-menu-container {
+                    overflow: auto;
+                    padding: 0.75rem;
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+                }
+            }
+
+            .layout-content-wrapper {
+                margin-left: 7rem;
+            }
+
+            .layout-menu {
+                ul {
+                    display: none;
+                }
+
+                li.active-menuitem {
+                    > ul {
+                        display: block;
+                    }
+                }
+
+                .layout-root-menuitem {
+                    border-radius: var(--border-radius);
+
+                    > .layout-menuitem-root-text {
+                        display: none;
+                    }
+
+                    > a {
+                        display: block;
+                        text-align: center;
+                        border-radius: var(--border-radius);
+                        padding: .5rem 0;
+                        cursor: pointer;
+                        outline: none;
+                        transition: background-color var(--transition-duration);
+
+                        .layout-submenu-toggler {
+                            display: none;
+                        }
+
+                        .layout-menuitem-icon {
+                            font-size: 1.25rem;
+                        }
+
+                        .layout-menuitem-text {
+                            font-size: 0.875rem;
+                            display: block;
+                            margin-top: .25rem;
+                        }
+                    }
+
+                    > ul {
+                        position: absolute;
+                        left: 7rem;
+                        top: 0;
+                        min-width: 15rem;
+                        border: var(--surface-border);
+                        box-shadow: $sidebarShadow;
+                        border-top-right-radius: var(--border-radius);
+                        border-bottom-right-radius: var(--border-radius);
+                        padding: 1rem;
+                        animation-duration: .4s;
+                        animation-timing-function: cubic-bezier(.05,.74,.2,.99);
+                        max-height: 20rem;
+                        overflow: auto;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,119 @@
+@media screen and (min-width: $breakpoint) {
+    .layout-wrapper {
+        &.layout-compact {
+            .layout-topbar {
+                width: calc(100% - 5rem);
+                margin-left: 5rem;
+
+                .topbar-left {
+                    .horizontal-logo {
+                        display: none;
+                    }
+
+                    .menu-button {
+                        display: none;
+                    }
+
+                    .topbar-separator {
+                        display: none;
+                    }
+                }
+            }
+
+            .layout-sidebar {
+                width: 5rem;
+                overflow: visible;
+                z-index: 999;
+
+                .logo {
+                    margin: 0;
+                }
+
+                .logo-image {
+                    margin-right: 0;
+                }
+
+                .app-name {
+                    display: none;
+                }
+
+                .layout-menu-container {
+                    overflow: auto;
+
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+                }
+            }
+
+            .layout-content-wrapper {
+                margin-left: 5rem;
+            }
+
+            .layout-menu {
+
+                .menu-separator {
+                    display: none;
+                }
+
+                ul {
+                    display: none;
+                }
+
+                li.active-menuitem {
+                    > ul {
+                        display: block;
+                    }
+                }
+
+                .layout-root-menuitem {
+                    margin-bottom: 1rem;
+                    border-radius: var(--border-radius);
+
+                    > .layout-menuitem-root-text {
+                        display: none;
+                    }
+
+                    > a {
+                        display: block;
+                        text-align: center;
+                        border-radius: var(--border-radius);
+                        padding: .5rem 0;
+                        cursor: pointer;
+                        outline: none;
+                        transition: background-color var(--transition-duration);
+
+                        .layout-submenu-toggler {
+                            display: none;
+                        }
+
+                        .layout-menuitem-icon {
+                            font-size: 1.25rem;
+                            margin-top: 4px;
+                        }
+
+                        .layout-menuitem-text {
+                            display: none;
+                        }
+                    }
+
+                    > ul {
+                        position: absolute;
+                        left: 5rem;
+                        top: 0;
+                        min-width: 15rem;
+                        border: var(--surface-border);
+                        box-shadow: $sidebarShadow;
+                        border-top-right-radius: var(--border-radius);
+                        border-bottom-right-radius: var(--border-radius);
+                        padding: 1rem;
+                        animation-duration: .4s;
+                        animation-timing-function: cubic-bezier(.05,.74,.2,.99);
+                        max-height: 20rem;
+                        overflow: auto;
+                    }
+                }
+            }
+        }
+    }
+}

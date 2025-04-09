@@ -1,0 +1,7 @@
+<p-dialog [(visible)]="visible" [style]="{width: '50vw'}" [breakpoints]="{'992px': '75vw', '576px': '90vw'}" 
+    [closeOnEscape]="true" [closable]="true" [dismissableMask]="true" [draggable]="false" [modal]="true" (onShow)="focusOnInput()">
+    <div class="search-container">
+        <i class="pi pi-search"></i>
+        <input #input type="text" class="p-inputtext search-input" placeholder="Search" (keydown)="onInputKeydown($event)"/>
+    </div>
+</p-dialog>

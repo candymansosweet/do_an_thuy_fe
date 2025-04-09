@@ -1,0 +1,9 @@
+{
+    "api": {
+        "baseUrl": "localhost:73/api"
+    },
+    "supabaseConfig": {
+        "url": "https://jmjhrqsdopcattwowwno.supabase.co",
+        "key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImptamhycXNkb3BjYXR0d293d25vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI3Mzc2NDgsImV4cCI6MjA1ODMxMzY0OH0.0CzS7mlB78oEoZENEY8CZxO5KeEjVf1CCRbRiWVAMyg"
+    }
+}

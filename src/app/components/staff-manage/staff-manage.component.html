@@ -1,0 +1,40 @@
+<div class="card card-layout">
+    <div class="flex justify-content-between align-items-center mb-4">
+        <h2>Danh sách nhân sự</h2>
+        <button pButton label="+ Nhân sự" class="p-button-primary"></button>
+    </div>
+    <div class="table-container">
+        <p-table [value]="staffList"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [paginator]="true"
+        [rows]="12"
+        [showCurrentPageReport]="true"
+        [scrollable]="true" [resizableColumns]="true"
+                 [tableStyle]="{ 'min-width': '50rem'}"
+                 styleClass="p-datatable-sm ">
+            <ng-template pTemplate="header">
+                <tr class="bg-blue-200">
+                    <th class="text-900">Họ và tên</th>
+                    <th class="text-900">Chức danh</th>
+                    <th class="text-900">Phòng ban</th>
+                    <th class="text-900">Email</th>
+                    <th class="text-900">Thao tác</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-staff>
+                <tr class="hover:surface-200">
+                    <td>{{staff.fullName}}</td>
+                    <td>{{staff.position}}</td>
+                    <td>{{staff.department}}</td>
+                    <td>{{staff.email}}</td>
+                    <td>
+                        <div class="flex gap-2">
+                            <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+                            <button pButton icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger"></button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
