@@ -1,0 +1,11 @@
+<p-dialog [(visible)]="visible" header="Xác nhận" [modal]="true" [style]="{width:'500px'}" (onHide)="cancel()" [closable]="closable">
+  <div class="flex align-items-center justify-content-begin">
+    <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem; color: var(--yellow-300);"></i>
+    <span [innerHTML]="confirmText"></span>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button pRipple icon="pi pi-times" [styleClass]="styleClassCancel" [label]="cancelLabel"
+      (click)="cancel()" *ngIf="cancelLabel !== ''"></p-button>
+    <button pButton pRipple icon="pi pi-check" [class]="styleClassConfirm" [label]="confirmLabel" (click)="confirm()"></button>
+  </ng-template>
+</p-dialog>

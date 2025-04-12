@@ -19,7 +19,7 @@ export abstract class BaseService extends Service {
   create(data: any): Observable<any> {
     return this.post(this.url, data);
   }
-  update(id: any, data: any): Observable<any> {
+  update(data: any): Observable<any> {
     return this.put(`${this.url}`, data);
   }
   deleteById(id: any): Observable<any> {

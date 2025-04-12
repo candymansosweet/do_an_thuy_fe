@@ -1,0 +1,44 @@
+<p-toast [style]="{'white-space': 'pre-line'}" [position]="position" [key]="key" [baseZIndex]="5000"
+  [showTransformOptions]="'translateX(100%)'" [hideTransformOptions]="'translateX(-100%)'" [autoZIndex]="true">
+  <ng-template let-message pTemplate="message">
+      <div class="p-flex p-flex-column" style="flex: 1">
+        <div class="grid p-fluid">
+            <div class="col-2 flex align-center">
+              <i class="pi pi-bell" style="font-size: 2rem"></i>
+            </div>
+            <div class="col-10">
+              <div class="font-bold" style="font-size: 1.25rem">{{message.summary}}</div>
+              <p>{{message.detail}}</p>
+            </div>
+        </div>
+      </div>
+  </ng-template>
+</p-toast>
+
+<p-toast [style]="{'white-space': 'pre-line'}" position="bottom-center" key="error" [baseZIndex]="5000"
+         [showTransformOptions]="'translateX(100%)'" [hideTransformOptions]="'translateX(-100%)'" [autoZIndex]="true">
+  <!--<ng-template let-message pTemplate="message">
+    <div class="p-flex p-flex-column" style="flex: 1">
+      <div class="grid p-fluid">
+        <div class="col-2 flex align-center">
+          <i class="pi pi-bell" style="font-size: 2rem"></i>
+        </div>
+        <div class="col-10">
+          <div class="font-bold" style="font-size: 1.25rem">{{message.summary}}</div>
+          <p>{{message.detail}}</p>
+        </div>
+      </div>
+    </div>
+  </ng-template>-->
+  <ng-template let-message pTemplate="message">
+    3454354353
+    <div class="flex flex-column align-items-start" style="flex: 1">
+      <div class="flex align-items-center gap-2">
+        <span class="font-bold" style="font-size: 1.25rem">Thông báo</span>
+      </div>
+      <div class="font-medium text-lg my-3">{{ message.detail }}</div>
+      <!--<p-button style="margin: auto" class="p-button-sm button-danger" label="Đóng" (click)="onConfirm()"></p-button>-->
+      <p-button style="margin: auto" (click)="onConfirm()" icon="pi pi-times" label="Đóng" styleClass="p-button-danger"></p-button>
+    </div>
+  </ng-template>
+</p-toast>

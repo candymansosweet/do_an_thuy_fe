@@ -1,0 +1,30 @@
+<p-dialog header="Cập nhật nhân sự" [(visible)]="isVisible" [modal]="true" [style]="{width: '30%'}">
+    <form [formGroup]="formGroup" class="p-fluid">
+        <div class="p-field flex pt-4 align-items-center">
+            <label for="fullName" class="w-4">Họ và tên <span class="text-red-500">*</span></label>
+            <input id="fullName" type="text" class="w-8" pInputText placeholder="Nhập họ và tên nhân sự" formControlName="fullName" />
+        </div>
+        <div class="p-field flex pt-4 align-items-center">
+            <label for="code" class="w-4">Mã <span class="text-red-500">*</span></label>
+            <input id="code" type="text" class="w-8" pInputText placeholder="Nhập mã nhân sự" formControlName="code" />
+        </div>
+        <div class="p-field flex pt-4 align-items-center">
+            <label for="position" class="w-4">Chức danh <span class="text-red-500">*</span></label>
+            <p-dropdown appendTo="body" [options]="positions" formControlName="position" optionLabel="label" class="w-8"
+                optionValue="value" placeholder="Chọn chức danh"></p-dropdown>
+        </div>
+        <div class="p-field flex pt-4 align-items-center">
+            <label for="department" class="w-4">Phòng ban <span class="text-red-500">*</span></label>
+            <p-dropdown appendTo="body" [options]="departments" formControlName="department" optionLabel="label" class="w-8"
+                optionValue="value" placeholder="Chọn phòng ban"></p-dropdown>
+        </div>
+        <div class="p-field flex pt-4 align-items-center">
+            <label for="email" class="w-4">Email</label>
+            <input id="email" type="email" class="w-8" pInputText placeholder="Enter email address" formControlName="email" />
+        </div>
+    </form>
+    <p-footer>
+        <button type="button" pButton icon="pi pi-times" label="Hủy" class="p-button-outlined p-button-danger" (click)="onCancel()"></button>
+        <button type="button" pButton icon="pi pi-check" label="Lưu" (click)="onSave()"></button>
+    </p-footer>
+</p-dialog>

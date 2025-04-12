@@ -42,7 +42,7 @@ export class AppConfigService {
         Object.assign(this.config, data);
 
         //other deeper props
-        this.config.api.baseUrl = 'http://' + data.api.baseUrl;
+        this.config.api.baseUrl = data.api.baseUrl;
         this.config.domain = data.domain;
 
         this.config.supabase.url = data.supabaseConfig.url;

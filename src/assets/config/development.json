@@ -1,6 +1,6 @@
 {
     "api": {
-        "baseUrl": "localhost:73/api"
+        "baseUrl": "https://localhost:7049/api"
     },
     "supabaseConfig": {
         "url": "https://jmjhrqsdopcattwowwno.supabase.co",
