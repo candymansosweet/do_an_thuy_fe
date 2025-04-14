@@ -5,6 +5,6 @@ import { Observable } from 'rxjs';
 @Injectable({
     providedIn: 'root',
 })
-export class StaffService extends BaseService {
-    override url = '/staffs';
+export class TaskService extends BaseService {
+    override url = '/tasks';
 }

@@ -10,8 +10,8 @@ export abstract class BaseService extends Service {
   search(data: any): Observable<any> {
     return this.post(`${this.url}/Search`, data);
   }
-  getAll(): Observable<any> {
-    return this.get(this.url);
+  getAll(params?: any): Observable<any> {
+    return this.get(this.url, params);
   }
   getById(id: any): Observable<any> {
     return this.get(`${this.url}/${id}`);

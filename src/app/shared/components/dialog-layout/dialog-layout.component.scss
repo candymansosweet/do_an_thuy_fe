@@ -1,0 +1,10 @@
+:host ::ng-deep .dialog-custom.border-round .p-dialog-content {
+  border-radius: 6px;
+  padding-top: 1.5rem;
+
+}
+:host ::ng-deep .dialog-custom .p-dialog-content {
+    border-radius: 0px;
+    padding-top: 1.5rem;
+  }
+

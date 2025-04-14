@@ -10,7 +10,7 @@ const routes: Routes = [
     {
         path: '', component: AppLayoutComponent,
         children: [
-            { path: '', loadChildren: () => import('./components/work-manage/work-manage.module').then(m => m.WorkManageModule) },
+            { path: '', loadChildren: () => import('./components/task-manage/task-manage.module').then(m => m.TaskManageModule) },
             { path: 'project', loadChildren: () => import('./components/project-manage/project-manage.module').then(m => m.ProjectManageModule) },
             { path: 'staff', loadChildren: () => import('./components/staff-manage/staff-manage.module').then(m => m.StaffManageModule) },
         ]

@@ -1,0 +1,11 @@
+<p-dialog
+        [showHeader]="false"
+        [closable]="closable"
+        [modal]="true"
+        [(visible)]="isVisible"
+        [dismissableMask]="true"
+        [position]="position"
+        [styleClass]="'dialog-custom ' + (borderRound ? 'border-round' : '')"
+        [style]="style">
+    <ng-container *ngTemplateOutlet="contentTemp"></ng-container>
+</p-dialog>

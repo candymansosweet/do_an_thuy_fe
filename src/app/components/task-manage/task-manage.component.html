@@ -1,0 +1,83 @@
+<div class="card card-layout">
+    <div class="flex justify-content-between align-items-center mb-4">
+        <h2>Danh sách công việc</h2>
+        <div class="flex align-items-center gap-2">
+            <div class="flex align-items-center gap-2 border-round-lg px-3 py-2 bg-gray-100">
+                <div class="w-1rem h-1rem border-circle bg-gray-600"></div>
+                <span>{{statusTasks.notStarted}} Chưa làm</span>
+            </div>
+            <div class="flex align-items-center gap-2 border-round-lg px-3 py-2 bg-blue-100">
+                <div class="w-1rem h-1rem border-circle bg-blue-600"></div>
+                <span>{{statusTasks.inProgress}} Đang làm</span>
+            </div>
+            <div class="flex align-items-center gap-2 border-round-lg px-3 py-2 bg-green-100">
+                <div class="w-1rem h-1rem border-circle bg-green-600"></div>
+                <span>{{statusTasks.completed}} Hoàn thành</span>
+            </div>
+            <div class="flex align-items-center gap-2 border-round-lg px-3 py-2 bg-red-100">
+                <div class="w-1rem h-1rem border-circle bg-red-600"></div>
+                <span>{{statusTasks.overdue}} Đã quá hạn</span>
+            </div>
+        </div>
+    </div>
+    <div class="flex justify-content-between align-items-center mb-4">
+        <div class="flex align-items-center gap-2">
+            Dự án:
+            <p-dropdown appendTo="body" [options]="projects" [(ngModel)]="filterValue.projectId" (onChange)="onFilter()"
+                optionLabel="label" class="w-15rem" styleClass="w-full" optionValue="value"
+                placeholder="Chọn dự án"></p-dropdown>
+            Trạng thái:
+            <p-dropdown appendTo="body" [options]="TASK_STATUS" [(ngModel)]="filterValue.status" (onChange)="onFilter()"
+                optionLabel="label" class="w-10rem" styleClass="w-full" optionValue="value"
+                placeholder="Chọn độ ưu tiên"></p-dropdown>
+            Người thực hiện:
+            <p-dropdown appendTo="body" [options]="lstStaffFilter" [(ngModel)]="filterValue.currentUserAssignId"
+                (onChange)="onFilter()" optionLabel="label" class="w-15rem" styleClass="w-full" optionValue="value"
+                placeholder="Chọn nhân viên"></p-dropdown>
+        </div>
+        <div class="flex align-items-center gap-2">
+            <input pInputText type="text" placeholder="Tìm kiếm" [(ngModel)]="filterValue.name" class="w-15rem"
+            (keydown.enter)="onFilter()"/>
+            <button pButton label="+ Công việc" class="p-button-primary" (click)="isAddTaskVisible = true"></button>
+        </div>
+    </div>
+    <div class="flex flex-column gap-2">
+        <div (click)="showDetailTask(task)" *ngFor="let task of taskList"
+            class="flex align-items-center gap-3 border-round border-1 border-300 p-4">
+            <div class="flex align-items-center gap-2 w-6">
+                <ng-container [ngSwitch]="task.status">
+                    <div *ngSwitchCase="0"
+                        class="border-round-xl px-3 py-1 text-gray-500 bg-gray-50 border-1 border-gray-200">{{task.status |
+                        taskStatus}}</div>
+                    <div *ngSwitchCase="1"
+                        class="border-round-xl px-3 py-1 text-blue-500 bg-blue-50 border-1 border-blue-200">{{task.status |
+                        taskStatus}}</div>
+                    <div *ngSwitchCase="2"
+                        class="border-round-xl px-3 py-1 text-green-500 bg-green-50 border-1 border-green-200">{{task.status
+                        | taskStatus}}</div>
+                    <div *ngSwitchCase="3" class="border-round-xl px-3 py-1 text-red-500 bg-red-50 border-1 border-red-200">
+                        {{task.status | taskStatus}}</div>
+                    <div *ngSwitchDefault>Không xác định</div>
+
+                </ng-container>
+                <div class="font-600 text-2xl">{{task.name}}</div>
+            </div>
+            <div class="flex align-items-center gap-2 w-6 justify-content-between">
+                <div class="flex align-items-center gap-2 w-4">
+                    <i class="pi pi-calendar text-500"></i>
+                    <span class="text-500">{{task.deadlineDate | date:'dd/MM/yyyy'}}</span>
+                </div>
+                <div class="flex align-items-center gap-2 w-4">
+                    <i class="pi pi-user text-500"></i>
+                    <span class="text-500">{{task.currentUserAssignName}}</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<app-add-task (reloadData)="onReloadData($event)" [isVisible]="isAddTaskVisible"
+    (isVisibleChange)="onAddTaskVisibleChange($event)"></app-add-task>
+<app-detail-task (reloadData)="onReloadData($event)" [isVisible]="isDetailTaskVisible" [taskId]="taskId"
+    (isVisibleChange)="onDetailTaskVisibleChange($event)"></app-detail-task>

@@ -1,0 +1,30 @@
+<p-dialog header="Thêm mới công việc" [(visible)]="isVisible" [modal]="true" [style]="{width: '30%'}">
+    <form [formGroup]="formGroup" class="p-fluid">
+        <div class="p-field flex pt-4 align-items-center">
+            <label for="taskName" class="w-4">Tên công việc <span class="text-red-500">*</span></label>
+            <input id="taskName" type="text" class="w-8" pInputText placeholder="Nhập tên công việc" formControlName="name" />
+        </div>
+        <div class="p-field flex pt-4 align-items-center">
+            <label for="projectId" class="w-4">Dự án <span class="text-red-500">*</span></label>
+            <p-dropdown appendTo="body" [options]="projects" formControlName="projectId" optionLabel="label" class="w-8"
+                optionValue="value" placeholder="Chọn dự án"></p-dropdown>
+        </div>
+        <div class="p-field flex pt-4 align-items-center">
+            <label for="currentUserAssignId" class="w-4">Người thực hiện <span class="text-red-500">*</span></label>
+            <p-dropdown appendTo="body" [options]="staffs" formControlName="currentUserAssignId" optionLabel="label" class="w-8"
+                optionValue="value" placeholder="Chọn người thực hiện"></p-dropdown>
+        </div>
+        <div class="p-field flex pt-4 align-items-center">
+            <label for="deadlineDate" class="w-4">Ngày hoàn thành <span class="text-red-500">*</span></label>
+            <p-calendar appendTo="body" id="deadlineDate" formControlName="deadlineDate" [showIcon]="true" class="w-8" placeholder="Chọn ngày hoàn thành"></p-calendar>
+        </div>
+        <div class="p-field flex pt-4 align-items-center">
+            <label for="description" class="w-4">Mô tả</label>
+            <textarea id="description" rows="3" class="w-8" pInputTextarea placeholder="Nhập mô tả công việc" formControlName="description"></textarea>
+        </div>
+    </form>
+    <p-footer>
+        <button type="button" pButton icon="pi pi-times" label="Hủy" class="p-button-outlined p-button-danger" (click)="onCancel()"></button>
+        <button type="button" pButton icon="pi pi-check" label="Lưu" (click)="onSave()"></button>
+    </p-footer>
+</p-dialog>

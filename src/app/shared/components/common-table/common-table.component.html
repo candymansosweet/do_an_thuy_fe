@@ -1,0 +1,30 @@
+<div class="table-container">
+    <p-table [value]="data" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [paginator]="true" [rows]="12"  [showCurrentPageReport]="true"
+        [scrollable]="true" [resizableColumns]="true" [tableStyle]="{ 'min-width': '50rem'}"
+        styleClass="p-datatable-sm "
+        selectionMode="single"
+        [(selection)]="selectedRow"
+        >
+        <ng-template pTemplate="header">
+            <tr class="bg-blue-200">
+                <th *ngFor="let column of columns" class="text-900">{{column.header}}</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+            <tr  [pSelectableRow]="rowData" class="hover:surface-200">
+                <ng-container *ngFor="let column of columns">
+                    <td [ngSwitch]="column.type">
+                        <div *ngSwitchCase="'text'">{{rowData[column.field]}}</div>
+                        <div *ngSwitchCase="'date'">{{rowData[column.field] | date:'dd/MM/yyyy'}}</div>
+                        <div *ngSwitchCase="'listObject'">{{rowData[column.field] | mergeObjectName}}</div>
+                        <div *ngSwitchCase="'button'" class="flex gap-2">
+                            <ng-container *ngTemplateOutlet="buttonTemplate; context: { $implicit: rowData }"></ng-container>
+                        </div>
+                        <div *ngSwitchDefault>output2</div>
+                    </td>
+                </ng-container>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

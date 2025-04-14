@@ -20,7 +20,14 @@ export abstract class Service {
         this.baseUrl = config.api.baseUrl;
         console.log(config);
     }
-    get(url: string, params?: {}, responseType?: string): Observable<any> {
+    get(url: string, params?: any, responseType?: string): Observable<any> {
+        if(params){
+            for(var key in params){
+              if(params[key] === undefined || params[key] === null){
+                delete params[key];
+              }
+            }
+          }
         switch (responseType) {
             case 'text':
                 return this.httpClient.get(

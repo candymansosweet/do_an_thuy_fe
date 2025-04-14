@@ -1,0 +1,91 @@
+<app-dialog-layout [(isVisible)]="isVisible" [contentTemp]="contentTemplate" [style]="{ 'width': '50%' }">
+    <ng-template #contentTemplate>
+        <div class="flex align-items-center justify-content-between w-full border-bottom-1 surface-border py-3 px-4">
+            <div class="flex align-items-center gap-2 w-6">
+                <ng-container [ngSwitch]="task?.status">
+                    <div *ngSwitchCase="0"
+                        class="border-round-xl px-3 py-1 text-gray-500 bg-gray-50 border-1 border-gray-200">
+                        {{task.status |
+                        taskStatus}}</div>
+                    <div *ngSwitchCase="1"
+                        class="border-round-xl px-3 py-1 text-blue-500 bg-blue-50 border-1 border-blue-200">
+                        {{task.status |
+                        taskStatus}}</div>
+                    <div *ngSwitchCase="2"
+                        class="border-round-xl px-3 py-1 text-green-500 bg-green-50 border-1 border-green-200">
+                        {{task.status
+                        | taskStatus}}</div>
+                    <div *ngSwitchCase="3"
+                        class="border-round-xl px-3 py-1 text-red-500 bg-red-50 border-1 border-red-200">
+                        {{task.status | taskStatus}}</div>
+                    <div *ngSwitchDefault>Không xác định</div>
+
+                </ng-container>
+            </div>
+            <div class="flex align-items-center gap-2">
+                <button (click)="isShowComfirmDelete = true"
+                    class="p-2 border-none cursor-pointer bg-unset hover:surface-200 transition-colors transition-duration-150">
+                    <i class="pi pi-trash text-700 text-red-500"></i>
+                </button>
+                <button (click)="isVisible = false"
+                    class="p-2 border-none cursor-pointer bg-unset hover:surface-200 transition-colors transition-duration-150">
+                    <i class="pi pi-times text-700"></i>
+                </button>
+            </div>
+        </div>
+        <div class="p-4">
+            <div class="text-3xl font-bold mb-4 text-xanh-thuy">
+                {{task?.name}}
+            </div>
+
+            <div class="flex align-items-center gap-4 mb-4">
+                <div class="flex align-items-center gap-2">
+                    <img src="assets/images/avatar.jpg" class="w-2rem h-2rem border-circle" alt="avatar" />
+                    <span class="text-900">{{task?.currentUserAssignName}}</span>
+                </div>
+                <div class="flex align-items-center gap-2">
+                    <i class="pi pi-clock text-500"></i>
+                    <span class="text-500 text-red-500">{{task?.deadlineDate | date:'dd/MM/yyyy'}}</span>
+                </div>
+                <div class="flex align-items-center gap-2">
+                    <i class="pi pi-folder text-500"></i>
+                    <span class="text-500">Dự án quản lý công việc</span>
+                </div>
+            </div>
+
+            <!-- <div class="mb-4">
+                <span class="bg-green-50 text-green-500 px-3 py-1 border-round-lg font-medium">
+                    <i class="pi pi-check-circle mr-2"></i>
+                    Hoàn thành
+                </span>
+            </div> -->
+            <ng-container [ngSwitch]="task?.status">
+
+                <button *ngSwitchCase="TASK_STATUS_VALUE.NOT_START" (click)="startTask()"
+                    class="text-2xl flex align-items-center gap-2 bg-blue-500 text-white px-4 py-2 border-round-lg border-none cursor-pointer hover:bg-blue-600 transition-colors transition-duration-150">
+                    <i class="pi pi-clock"></i>
+                    <span>Bắt đầu làm</span>
+                </button>
+                <button *ngSwitchCase="TASK_STATUS_VALUE.IN_PROGRESS" (click)="completeTask()"
+                    class="text-2xl flex align-items-center gap-2 bg-green-500 text-white px-4 py-2 border-round-lg border-none cursor-pointer hover:bg-green-600 transition-colors transition-duration-150">
+                    <i class="pi pi-send"></i>
+                    <span>Hoàn thành</span>
+                </button>
+                <div *ngSwitchDefault></div>
+
+            </ng-container>
+
+
+            <div class="text-3xl font-bold my-2">Mô tả công việc</div>
+            <p class="text-700 line-height-3 m-0">
+                Phân tích và thiết kế hệ thống quản lý công việc cho bệnh viện, bao gồm các chức năng: quản lý dự án,
+                quản lý công việc, quản lý nhân sự, báo cáo thống kê.
+            </p>
+            <div class="text-3xl font-bold my-2">File đính kèm</div>
+
+        </div>
+        <confirm-dialog [(visible)]="isShowComfirmDelete" [confirmText]="titleDelete" (onConfirm)="deleteStaff()"
+            [styleClassCancel]="'p-button-outlined'" [styleClassConfirm]="''" [confirmLabel]="'Có'"
+            [cancelLabel]="'Không'"></confirm-dialog>
+    </ng-template>
+</app-dialog-layout>

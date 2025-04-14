@@ -35,5 +35,29 @@ export class Constant {
             label: 'Phòng hành chính nhân sự tổng hợp',
             value: 4
         }
+    ];
+    public static readonly TASK_STATUS_VALUE = {
+        NOT_START: 0,
+        IN_PROGRESS: 1,
+        COMPLETED: 2,
+        OVERDUE: 3
+    };
+    public static readonly TASK_STATUS = [
+        {
+            label: 'Chưa làm',
+            value: 0
+        },
+        {
+            label: 'Đang làm',
+            value: 1
+        },
+        {
+            label: 'Hoàn thành',
+            value: 2
+        },
+        {
+            label: 'Quá hạn',
+            value: 3
+        }
     ]
 }

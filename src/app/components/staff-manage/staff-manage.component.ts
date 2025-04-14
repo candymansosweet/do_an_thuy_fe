@@ -2,12 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StaffService } from 'src/app/services/staff.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { ConfirmationService, ConfirmEventType } from 'primeng/api';
-
-interface Column {
-    field: string;
-    header: string;
-}
-
+import { Column } from 'src/app/models/table-column';
 @Component({
     selector: 'app-staff-manage',
     templateUrl: './staff-manage.component.html',
@@ -15,11 +10,11 @@ interface Column {
 })
 export class StaffManageComponent implements OnInit {
     columns: Column[] = [
-        { field: 'fullName', header: 'Họ và tên' },
-        { field: 'position', header: 'Chức danh' },
-        { field: 'department', header: 'Phòng ban' },
-        { field: 'email', header: 'Email' },
-        { field: 'actions', header: 'Thao tác' }
+        { field: 'fullName', header: 'Họ và tên', type: 'text' },
+        { field: 'position', header: 'Chức danh', type: 'text' },
+        { field: 'department', header: 'Phòng ban', type: 'text' },
+        { field: 'email', header: 'Email', type: 'text' },
+        { field: 'actions', header: 'Thao tác', type: 'button' }
     ];
 
     isAddStaffVisible = false;
@@ -87,6 +82,9 @@ export class StaffManageComponent implements OnInit {
     onEdit(rowData: any) {
         this.selectedRow = { ...rowData };
         this.isEditStaffVisible = true;
+    }
+    onSelectedRowChange(rowData: any) {
+        this.selectedRow = { ...rowData };
     }
     selectedRow: any;
     // handleRowSelect() {

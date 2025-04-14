@@ -1,1 +1,22 @@
-<p>project-manage works!</p>
+<div class="card card-layout">
+    <div class="flex justify-content-between align-items-center mb-4">
+        <h2>Danh sách dự án</h2>
+        <button pButton label="+ Dự án" class="p-button-primary" (click)="isAddProjectVisible = true"></button>
+    </div>
+    <common-table [columns]="columns" [data]="projectList" [selectedRow]="selectedRow" [buttonTemplate]="buttonTemplate"
+        (selectedRowChange)="onSelectedRowChange($event)" (editRow)="onEdit($event)" (deleteRow)="onDelete($event)">
+        <ng-template #buttonTemplate let-item>
+            <button (click)="onEdit(item)" pButton icon="pi pi-pencil"
+                class="p-button-rounded p-button-text"></button>
+            <button (click)="onDelete(item)" pButton icon="pi pi-trash"
+                class="p-button-rounded p-button-text p-button-danger"></button>
+        </ng-template>
+    </common-table>
+</div>
+<app-edit-project (reloadData)="onReloadData($event)" [id]="selectedRow?.id" [isVisible]="isEditProjectVisible"
+    (isVisibleChange)="onEditProjectVisibleChange($event)"></app-edit-project>
+<app-add-project (reloadData)="onReloadData($event)" [isVisible]="isAddProjectVisible"
+    (isVisibleChange)="onAddProjectVisibleChange($event)"></app-add-project>
+<confirm-dialog [(visible)]="isShowComfirmDelete" [confirmText]="titleDelete" (onConfirm)="deleteProject()"
+    [styleClassCancel]="'p-button-outlined'" [styleClassConfirm]="''" [confirmLabel]="'Có'"
+    [cancelLabel]="'Không'"></confirm-dialog>

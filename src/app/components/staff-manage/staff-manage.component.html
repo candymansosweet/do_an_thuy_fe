@@ -3,44 +3,20 @@
         <h2>Danh sách nhân sự</h2>
         <button pButton label="+ Nhân sự" class="p-button-primary" (click)="isAddStaffVisible = true"></button>
     </div>
-    <div class="table-container">
-        <p-table [value]="staffList" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-            [paginator]="true" [rows]="12"  [showCurrentPageReport]="true"
-            [scrollable]="true" [resizableColumns]="true" [tableStyle]="{ 'min-width': '50rem'}"
-            styleClass="p-datatable-sm "
-            selectionMode="single"
-            [(selection)]="selectedRow"
-            >
-            <ng-template pTemplate="header">
-                <tr class="bg-blue-200">
-                    <th class="text-900">Họ và tên</th>
-                    <th class="text-900">Chức danh</th>
-                    <th class="text-900">Phòng ban</th>
-                    <th class="text-900">Email</th>
-                    <th class="text-900">Thao tác</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-rowData>
-                <tr  [pSelectableRow]="rowData" class="hover:surface-200">
-                    <td>{{rowData.fullName}}</td>
-                    <td>{{rowData.position}}</td>
-                    <td>{{rowData.department}}</td>
-                    <td>{{rowData.email}}</td>
-                    <td>
-                        <div class="flex gap-2">
-                            <button (click)="onEdit(rowData)" pButton icon="pi pi-pencil"
-                                class="p-button-rounded p-button-text"></button>
-                            <button (click)="onDelete(rowData)" pButton icon="pi pi-trash"
-                                class="p-button-rounded p-button-text p-button-danger"></button>
-                        </div>
-                    </td>
-                </tr>
-            </ng-template>
-        </p-table>
-    </div>
+    <common-table [columns]="columns" [data]="staffList" [selectedRow]="selectedRow" [buttonTemplate]="buttonTemplate"
+        (selectedRowChange)="onSelectedRowChange($event)">
+        <ng-template #buttonTemplate let-item>
+            <button (click)="onEdit(item)" pButton icon="pi pi-pencil"
+                class="p-button-rounded p-button-text"></button>
+            <button (click)="onDelete(item)" pButton icon="pi pi-trash"
+                class="p-button-rounded p-button-text p-button-danger"></button>
+        </ng-template>
+    </common-table>
 </div>
 <app-edit-staff (reloadData)="onReloadData($event)" [id]="selectedRow?.id" [isVisible]="isEditStaffVisible" (isVisibleChange)="onEditStaffVisibleChange($event)"></app-edit-staff>
+
 <app-add-staff (reloadData)="onReloadData($event)" [isVisible]="isAddStaffVisible" (isVisibleChange)="onAddStaffVisibleChange($event)"></app-add-staff>
+
 <confirm-dialog [(visible)]="isShowComfirmDelete" [confirmText]="titleDelete" (onConfirm)="deleteStaff()"
   [styleClassCancel]="'p-button-outlined'" [styleClassConfirm]="''" [confirmLabel]="'Có'"
   [cancelLabel]="'Không'"></confirm-dialog>
