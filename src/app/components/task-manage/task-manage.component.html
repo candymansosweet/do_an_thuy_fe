@@ -65,11 +65,11 @@
             </div>
             <div class="flex align-items-center gap-2 w-6 justify-content-between">
                 <div class="flex align-items-center gap-2 w-4">
-                    <i class="pi pi-calendar text-500"></i>
-                    <span class="text-500">{{task.deadlineDate | date:'dd/MM/yyyy'}}</span>
+                    <i class="pi pi-clock text-500"></i>
+                    <span class="text-500 text-red-500">{{task.deadlineDate | date:'dd/MM/yyyy'}}</span>
                 </div>
-                <div class="flex align-items-center gap-2 w-4">
-                    <i class="pi pi-user text-500"></i>
+                <div class="flex align-items-center gap-2 w-4 justify-content-end">
+                    <img src="assets/demo/images/avatar/profile.jpg" class="w-2rem h-2rem border-circle" alt="avatar" />
                     <span class="text-500">{{task.currentUserAssignName}}</span>
                 </div>
             </div>

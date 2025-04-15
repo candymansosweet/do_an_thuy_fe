@@ -33,14 +33,14 @@
                 </button>
             </div>
         </div>
-        <div class="p-4 overflow-y-auto" style="max-height: calc(100vh - 150px);">
+
             <div class="text-3xl font-bold mb-4 text-xanh-thuy">
                 {{task?.name}}
             </div>
 
             <div class="flex align-items-center gap-4 mb-4">
                 <div class="flex align-items-center gap-2">
-                    <img src="assets/images/avatar.jpg" class="w-2rem h-2rem border-circle" alt="avatar" />
+                    <img src="assets/demo/images/avatar/profile.jpg" class="w-2rem h-2rem border-circle" alt="avatar" />
                     <span class="text-900">{{task?.currentUserAssignName}}</span>
                 </div>
                 <div class="flex align-items-center gap-2">
@@ -88,18 +88,21 @@
                 </button>
                 <input #inputFile hidden type="file" (change)="onFileSelected($event)" multiple />
             </div>
-            <div *ngFor="let file of task?.files; let index = index" class="flex align-items-center gap-3 p-3 border-1 surface-border border-round">
-                <i class="pi pi-file text-2xl text-primary"></i>
-                <div class="flex-1" (click)="openFile(file.filePath)">
-                    <div class="text-900 font-medium">{{file.fileName}}</div>
-                    <div class="text-500">{{file.fileSize | number}}KB</div>
+            <div class="flex flex-column gap-2 p-4 overflow-y-auto" style="max-height: 350px;">
+                <div *ngFor="let file of task?.files; let index = index"
+                class="flex align-items-center gap-3 p-3 border-1 surface-border border-round">
+                    <i class="pi pi-file text-2xl text-primary"></i>
+                    <div class="flex-1" (click)="openFile(file.filePath)">
+                        <div class="text-900 font-medium">{{file.fileName}}</div>
+                        <div class="text-500">{{file.fileSize | number}}KB</div>
+                    </div>
+                    <button (click)="onFileDelete(file.id)" class="p-2 border-none cursor-pointer bg-unset hover:surface-200 transition-colors transition-duration-150">
+                        <i class="pi pi-trash text-600 text-red-500"></i>
+                    </button>
                 </div>
-                <button (click)="onFileDelete(file.id)" class="p-2 border-none cursor-pointer bg-unset hover:surface-200 transition-colors transition-duration-150">
-                    <i class="pi pi-trash text-600 text-red-500"></i>
-                </button>
+
             </div>
 
-        </div>
         <confirm-dialog [(visible)]="isShowComfirmDelete" [confirmText]="titleDelete" (onConfirm)="deleteStaff()"
             [styleClassCancel]="'p-button-outlined'" [styleClassConfirm]="''" [confirmLabel]="'Có'"
             [cancelLabel]="'Không'"></confirm-dialog>
