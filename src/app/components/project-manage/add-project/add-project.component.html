@@ -10,12 +10,12 @@
                 optionValue="value" placeholder="Chọn người quản lý"></p-dropdown>
         </div>
         <div class="p-field flex pt-4 align-items-center">
-            <label for="members" class="w-4">Thành viên</label>
+            <label for="members" class="w-4">Thành viên <span class="text-red-500">*</span></label>
             <p-multiSelect appendTo="body" [options]="staffList" formControlName="projectMemIds" optionLabel="label" class="w-8"
                 optionValue="value" placeholder="Chọn thành viên"></p-multiSelect>
         </div>
         <div class="p-field flex pt-4 align-items-center">
-            <label for="description" class="w-4">Mô tả</label>
+            <label for="description" class="w-4">Mô tả <span class="text-red-500">*</span></label>
             <textarea id="description" class="w-8" pInputTextarea placeholder="Nhập mô tả dự án" formControlName="description"></textarea>
         </div>
         <div class="p-field flex pt-4 align-items-center">

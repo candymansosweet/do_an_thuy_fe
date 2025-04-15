@@ -37,8 +37,8 @@ export class AddProjectComponent {
         this.formGroup = this.fb.group({
             projectName: ['', Validators.required],
             managerId: ['', Validators.required],
-            projectMemIds: [[]],
-            description: [''],
+            projectMemIds: [[], Validators.required],
+            description: ['', Validators.required],
             deadlineDate: [new Date(), Validators.required]
         });
     }

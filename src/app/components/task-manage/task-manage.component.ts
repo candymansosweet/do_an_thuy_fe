@@ -44,9 +44,12 @@ export class TaskManageComponent implements OnInit, AfterViewInit {
         private authStateService: AuthStateService
     ) {
         this.authStateService.subscribe((auth: any) => {
-            this.userId = auth.staffId;
+            console.log(auth);
+            this.userId = auth.userId;
+            this.lstStaffFilter.push({ label: 'Của tôi', value: this.userId });
+            console.log(this.lstStaffFilter);
+
         });
-        this.lstStaffFilter.push({ label: 'Của tôi', value: this.userId });
     }
     userId = '';
     ngAfterViewInit(): void {
@@ -57,7 +60,6 @@ export class TaskManageComponent implements OnInit, AfterViewInit {
 
     ngOnInit(): void {
 
-        this.onFilter();
         this.loadStaffFilter();
         this.loadStatusTasks();
         this.loadProjects();
@@ -105,6 +107,8 @@ export class TaskManageComponent implements OnInit, AfterViewInit {
             next: (response: any) => {
                 this.projects.push(...response.items.map((en: any) => ({ label: en.projectName, value: en.id })));
                 this.filterValue.projectId =  localStorage.getItem(StorageKeys.PROJECT_ID) || '';
+                this.onFilter();
+
             }
         });
     }
@@ -118,7 +122,7 @@ export class TaskManageComponent implements OnInit, AfterViewInit {
         this.isAddTaskVisible = event;
     }
     changeProject(){
-        // localStorage.setItem(StorageKeys.PROJECT_ID, this.filterValue.projectId);
+        localStorage.removeItem(StorageKeys.PROJECT_ID);
         // this.filterValue.projectId =
             // this.router.navigate(['/task', this.filterValue.projectId]);
             this.onFilter();
