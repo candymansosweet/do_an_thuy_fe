@@ -62,15 +62,17 @@ export class AddStaffComponent {
         let body = {...this.formGroup.value};
         // console.log(body);
 
-        this.isVisible = false;
         this.staffService.create(body).subscribe({
             next: (res) => {
+        this.isVisible = false;
+        console.log(res);
+
               this.notifyService.success("Thêm thành thành công nhân sự " + res.fullName);
               this.reloadData.emit(true);
 
             },
             error: (err) => {
-              err.error.errors.forEach((item: any)=>{
+              err.error.Errors.forEach((item: any)=>{
                 this.notifyService.error(item);
               })
             }

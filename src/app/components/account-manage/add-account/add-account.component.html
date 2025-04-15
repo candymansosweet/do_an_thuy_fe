@@ -1,0 +1,26 @@
+<p-dialog header="Cập nhật tài khoản" [(visible)]="isVisible" [modal]="true" [style]="{width: '30%'}">
+    <form [formGroup]="formGroup" class="p-fluid">
+        <div class="p-field flex pt-4 align-items-center">
+            <label class="w-4">Tên tài khoản <span class="text-red-500">*</span></label>
+            <input  type="text" class="w-8" pInputText placeholder="Nhập tên tài khoản" formControlName="name" />
+        </div>
+        <div class="p-field flex pt-4 align-items-center">
+            <label for="password" class="w-4">Mật khẩu <span class="text-red-500">*</span></label>
+            <input id="password" type="password" class="w-8" pInputText placeholder="Nhập mật khẩu" formControlName="password" />
+        </div>
+        <div class="p-field flex pt-4 align-items-center">
+            <label for="staffId" class="w-4">Nhân viên</label>
+            <p-dropdown appendTo="body" [options]="staffList" formControlName="staffId" optionLabel="label" class="w-8"
+                optionValue="value" placeholder="Chọn nhân viên"></p-dropdown>
+        </div>
+        <div class="p-field flex pt-4 align-items-center">
+            <label for="role" class="w-4">Vai trò <span class="text-red-500">*</span></label>
+            <p-dropdown appendTo="body" [options]="roleList" formControlName="role" optionLabel="label" class="w-8"
+                optionValue="value" placeholder="Chọn vai trò"></p-dropdown>
+        </div>
+    </form>
+    <p-footer>
+        <button type="button" pButton icon="pi pi-times" label="Hủy" class="p-button-outlined p-button-danger" (click)="onCancel()"></button>
+        <button type="button" pButton icon="pi pi-check" label="Lưu" (click)="onSave()"></button>
+    </p-footer>
+</p-dialog>

@@ -1,29 +1,18 @@
-<div class="flex h-screen">
-    <div class="w-full lg:w-4 h-full text-center px-6 py-6 flex flex-column justify-content-between">
+<div class="flex h-screen justify-content-center align-items-center" [formGroup]="loginForm">
+    <div class="w-full lg:w-4 text-center px-6 py-6 flex flex-column justify-content-between card">
         <img [src]="'assets/layout/images/logo-dark.svg'" class="h-4rem mt-4" alt="diamond-layout" />
 
         <div class="flex flex-column align-items-center gap-4">
             <div class="mb-3">
-                <h2>Login to your account</h2>
-                <p>Forgot password? <a class="text-primary hover:underline cursor-pointer font-medium">Click here</a> to reset.</p>
+                <h2>Đăng nhập bằng tài khoản của bạn</h2>
+                <p>Quên mật khẩu? <a class="text-primary hover:underline cursor-pointer font-medium">Truy cập</a> để reset mật khẩu</p>
             </div>
-            <input pInputText id="email" placeholder="Email" class="w-20rem"/>
-            <p-password  id="password" placeholder="Password" [feedback]="true" inputStyleClass="w-20rem"></p-password>
-            <button pButton label="CONTINUE" type="button" class="w-20rem"></button>
+            <input pInputText id="username" placeholder="Tên tài khoản" class="w-20rem" formControlName="username"/>
+            <p-password  id="password" placeholder="Mật khẩu" [feedback]="true" inputStyleClass="w-20rem" formControlName="password"></p-password>
+            <button (click)="login()" pButton label="Đăng nhập" type="button" class="w-20rem"></button>
         </div>
 
-        <p class="text-color-secondary font-semibold">A problem? <a class="text-primary hover:underline cursor-pointer font-medium">Click here</a> and let us help you.</p>
-    </div>
-    <div class="w-8 hidden lg:flex flex-column justify-content-between align-items-center px-6 py-6 bg-cover bg-norepeat" style="background-image: url('assets/demo/images/auth/bg-login.jpg')">
-        <div class="mt-auto mb-auto">
-            <span class="block text-white text-7xl font-semibold">Access to your <br/>Diamond <br/>Account</span>
-            <span class="block text-white text-3xl mt-4">Lorem ipsum dolor sit amet, consectetur<br/> adipiscing elit. Donec posuere velit nec enim<br/> sodales, nec placerat erat tincidunt. </span>
-        </div>
-        <div class="flex align-items-center gap-5">
-            <span class="text-white font-semibold">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-            <i class="pi pi-github text-3xl p-1 surface-overlay border-circle cursor-pointer"></i>
-            <i class="pi pi-twitter text-3xl p-1 surface-overlay border-circle cursor-pointer"></i>
-        </div>
+        <p class="text-color-secondary font-semibold">Có vấn đề? <a class="text-primary hover:underline cursor-pointer font-medium">Truy cập</a> để giúp bạn.</p>
     </div>
 </div>
 <app-config [minimal]="true"></app-config>

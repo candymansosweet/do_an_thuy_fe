@@ -3,6 +3,7 @@ import { StaffService } from 'src/app/services/staff.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { ConfirmationService, ConfirmEventType } from 'primeng/api';
 import { Column } from 'src/app/models/table-column';
+import { Constant } from 'src/app/shared/constants/constants';
 @Component({
     selector: 'app-staff-manage',
     templateUrl: './staff-manage.component.html',
@@ -10,6 +11,7 @@ import { Column } from 'src/app/models/table-column';
 })
 export class StaffManageComponent implements OnInit {
     columns: Column[] = [
+        { field: 'code', header: 'Mã', type: 'text' },
         { field: 'fullName', header: 'Họ và tên', type: 'text' },
         { field: 'position', header: 'Chức danh', type: 'text' },
         { field: 'department', header: 'Phòng ban', type: 'text' },
@@ -36,7 +38,13 @@ export class StaffManageComponent implements OnInit {
     ngOnInit(): void {
         this.staffService.getAll().subscribe({
             next: (res) => {
-                this.staffList = res.items;
+                this.staffList = res.items.map((item: any) => {
+                    return {
+                        ...item,
+                        position: Constant.POSITION.find((en: any) => en.value === item.position)?.label || '',
+                        department: Constant.DEPARTMENT.find((en: any) => en.value === item.department)?.label || ''
+                    }
+                });
             },
             error: (err) => {
                 this.notifyService.error('Không thể lấy thông tin nhân viên');
@@ -45,17 +53,21 @@ export class StaffManageComponent implements OnInit {
         })
     }
     onReloadData(event: any) {
-        if (event) {
             this.staffService.getAll().subscribe({
                 next: (res) => {
-                    this.staffList = res.items;
+                    this.staffList = res.items.map((item: any) => {
+                        return {
+                            ...item,
+                            position: Constant.POSITION.find((en: any) => en.value === item.position)?.label || '',
+                            department: Constant.DEPARTMENT.find((en: any) => en.value === item.department)?.label || ''
+                        }
+                    });
                 },
                 error: (err) => {
                     this.notifyService.error('Không thể lấy thông tin nhân viên');
 
                 }
             })
-        }
     }
     onPageChange(event: any) {
         this.first = event.first;

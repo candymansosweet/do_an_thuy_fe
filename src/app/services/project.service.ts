@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class ProjectService extends BaseService {
     override url = '/projects';
 
-    GetStatusTasks(id: string| null): Observable<any> {
-        return this.get(`${this.url}/GetStatusTasks/${id}`);
+    GetStatusTasks(data: any): Observable<any> {
+        return this.post(`${this.url}/GetStatusTasks`, data);
     }
 }

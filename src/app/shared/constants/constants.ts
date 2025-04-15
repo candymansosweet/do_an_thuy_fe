@@ -13,7 +13,16 @@ export class Constant {
             value: 2
         }
     ]
-
+    public static readonly ROLE_SYSTEM_LABEL = [
+        {
+            label: 'Quản trị viên',
+            value: 0
+        },
+        {
+            label: 'Nhân viên',
+            value: 5
+        },
+    ]
     public static readonly DEPARTMENT = [
         {
             label: 'Phòng kỹ thuật',
@@ -55,9 +64,9 @@ export class Constant {
             label: 'Hoàn thành',
             value: 2
         },
-        {
-            label: 'Quá hạn',
-            value: 3
-        }
+        // {
+        //     label: 'Quá hạn',
+        //     value: 3
+        // }
     ]
 }

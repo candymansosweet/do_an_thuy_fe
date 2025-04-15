@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { ProjectService } from 'src/app/services/project.service';
 import { StaffService } from 'src/app/services/staff.service';
 import { TaskService } from 'src/app/services/task.service';
 import { Constant } from 'src/app/shared/constants/constants';
+import { StorageKeys } from 'src/app/shared/constants/storage-key';
+import { AuthStateService } from 'src/app/shared/system-services/auth-state.service';
 
 @Component({
     selector: 'app-task-manage',
     templateUrl: './task-manage.component.html',
     styleUrls: ['./task-manage.component.scss']
 })
-export class TaskManageComponent implements OnInit {
+export class TaskManageComponent implements OnInit, AfterViewInit {
     filterValue = {
         status: '',
         projectId: '',
@@ -24,20 +28,36 @@ export class TaskManageComponent implements OnInit {
 
     isAddTaskVisible = false;
     TASK_STATUS: any[] = [{ label: 'Tất cả', value: '' }, ...Constant.TASK_STATUS];
-    lstStaffFilter: any[] = [{ label: 'Tất cả', value: '' }]
-    projects: any[] = [];
+    lstStaffFilter: any[] = [
+        { label: 'Tất cả', value: '' },
+    ]
+    projects: any[] = [{ label: 'Tất cả', value: '' }];
 
     isDetailTaskVisible = false;
     constructor(
         private taskService: TaskService,
         private projectService: ProjectService,
         private staffService: StaffService,
-        private notifyService: NotificationService
+        private notifyService: NotificationService,
+        private route: ActivatedRoute,
+        private router: Router,
+        private authStateService: AuthStateService
     ) {
+        this.authStateService.subscribe((auth: any) => {
+            this.userId = auth.staffId;
+        });
+        this.lstStaffFilter.push({ label: 'Của tôi', value: this.userId });
+    }
+    userId = '';
+    ngAfterViewInit(): void {
+        // this.filterValue = {...this.filterValue, projectId: this.projectId};
+                // this.filterValue.projectId = this.projectId;
+
     }
 
     ngOnInit(): void {
-        this.loadTasks();
+
+        this.onFilter();
         this.loadStaffFilter();
         this.loadStatusTasks();
         this.loadProjects();
@@ -49,6 +69,7 @@ export class TaskManageComponent implements OnInit {
                 this.taskList = response.items.map((en: any) => ({
                     ...en,
                     deadlineDate: en.deadlineDate ? new Date(en.deadlineDate) : null,
+                    isOverdue: en.deadlineDate ? en.deadlineDate < new Date() : false
                 }));
                 console.log(this.taskList);
 
@@ -65,7 +86,7 @@ export class TaskManageComponent implements OnInit {
             }
         });
     }
-    projectId = null;
+    projectId = '';
     statusTasks: any = {
         notStarted: 0,
         inProgress: 0,
@@ -73,7 +94,7 @@ export class TaskManageComponent implements OnInit {
         cancelled: 0
     };
     loadStatusTasks(): void {
-        this.projectService.GetStatusTasks(this.projectId).subscribe({
+        this.projectService.GetStatusTasks({projectId: this.filterValue.projectId}).subscribe({
             next: (response: any) => {
                 this.statusTasks = response;
             }
@@ -82,7 +103,8 @@ export class TaskManageComponent implements OnInit {
     loadProjects(): void {
         this.projectService.getAll().subscribe({
             next: (response: any) => {
-                this.projects = response.items.map((en: any) => ({ label: en.projectName, value: en.id }));
+                this.projects.push(...response.items.map((en: any) => ({ label: en.projectName, value: en.id })));
+                this.filterValue.projectId =  localStorage.getItem(StorageKeys.PROJECT_ID) || '';
             }
         });
     }
@@ -94,6 +116,20 @@ export class TaskManageComponent implements OnInit {
     }
     onAddTaskVisibleChange(event: any) {
         this.isAddTaskVisible = event;
+    }
+    changeProject(){
+        // localStorage.setItem(StorageKeys.PROJECT_ID, this.filterValue.projectId);
+        // this.filterValue.projectId =
+            // this.router.navigate(['/task', this.filterValue.projectId]);
+            this.onFilter();
+            this.loadStatusTasks();
+        // }
+        // else{
+        //     this.router.navigate(['']);
+        //     this.filterValue.projectId = '';
+        //     this.onFilter();
+        //     this.loadStatusTasks();
+        // }
     }
     onFilter() {
         console.log(event);

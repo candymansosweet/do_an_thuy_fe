@@ -79,9 +79,9 @@ export class EditStaffComponent {
                 this.reloadData.emit(true);
             },
             error: (err) => {
-                err.error.errors.forEach((item: any) => {
+                err.error.Errors.forEach((item: any)=>{
                     this.notifyService.error(item);
-                });
+                  })
             }
         });
     }

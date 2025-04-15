@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectService } from 'src/app/services/project.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { Column } from 'src/app/models/table-column';
+import { Router } from '@angular/router';
+import { StorageKeys } from 'src/app/shared/constants/storage-key';
 
 
 @Component({
@@ -28,7 +30,8 @@ export class ProjectManageComponent implements OnInit {
 
     constructor(
         private projectService: ProjectService,
-        private notifyService: NotificationService
+        private notifyService: NotificationService,
+        private router: Router
     ) { }
 
     ngOnInit(): void {
@@ -87,5 +90,14 @@ export class ProjectManageComponent implements OnInit {
 
     onSelectedRowChange(rowData: any) {
         this.selectedRow = { ...rowData };
+    }
+
+    onDetail(rowData: any) {
+        localStorage.setItem(StorageKeys.PROJECT_ID, rowData.id);
+        setTimeout(() => {
+            this.router.navigate(['']);
+        }, 100);
+
+        // this.isDetailProjectVisible = true;
     }
 }

@@ -18,7 +18,10 @@ export abstract class Service {
     ) {
         const config = this.configService.getConfig();
         this.baseUrl = config.api.baseUrl;
-        console.log(config);
+    }
+    openFile(filePath: string) {
+        var url = `${this.baseUrl}`.replace('/api', '') + `/${filePath}`;
+        window.open(url, '_blank');
     }
     get(url: string, params?: any, responseType?: string): Observable<any> {
         if(params){

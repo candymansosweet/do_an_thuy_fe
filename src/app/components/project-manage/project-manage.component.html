@@ -6,6 +6,8 @@
     <common-table [columns]="columns" [data]="projectList" [selectedRow]="selectedRow" [buttonTemplate]="buttonTemplate"
         (selectedRowChange)="onSelectedRowChange($event)" (editRow)="onEdit($event)" (deleteRow)="onDelete($event)">
         <ng-template #buttonTemplate let-item>
+            <button (click)="onDetail(item)" pButton icon="pi pi-eye"
+            class="p-button-rounded p-button-text p-button-info"></button>
             <button (click)="onEdit(item)" pButton icon="pi pi-pencil"
                 class="p-button-rounded p-button-text"></button>
             <button (click)="onDelete(item)" pButton icon="pi pi-trash"
